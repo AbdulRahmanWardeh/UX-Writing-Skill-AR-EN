@@ -1,6 +1,6 @@
 # UX-Writing-Skill-AR-EN
 
-Document Arabic interface copy from one screen, a selection, or an entire Figma page. The agent creates editable bilingual tables on the canvas, with English on the left and the exact Arabic on the right. Each screen contributes only copy that still needs documenting.
+Document new Arabic interface copy from one screen, a selection, or an entire Figma page. The agent builds editable bilingual tables in Figma and groups the copy by the section where it appears. English is on the left and the exact Arabic is on the right.
 
 ## Install
 
@@ -39,7 +39,19 @@ If screen 1 already documents the button **استمرار → Continue**, the sa
 
 The agent can process a page with 50+ screens in one request. It reads existing handoffs to check for duplicates and excludes those tables from source extraction. Product tables inside screens, such as payment history, still contribute their labels and text. Screen headers, footers, and standalone numbers are skipped. An inline number such as `00:59` stays in its sentence with its original digits, even when the timer has its own Figma layer.
 
-The agent designs the table using the file’s color variables for solid text, a white background, and light-grey borders and separators. A template is optional. If you provide a table instance, the agent detaches and fills it. If you start with a screenshot, provide an editable Figma destination for the canvas handoff or ask for a Markdown preview.
+A template is optional. The agent builds the table or detaches a supplied instance and fills it. To update an existing handoff, ask the agent to reformat it in place. If you start with a screenshot, provide an editable Figma destination for the handoff or ask for a Markdown preview.
+
+## Figma table layout
+
+Each table is **400 px** wide with a white background. Each row fills the table width and hugs its content height. The rows carry the light-grey borders and dividers. The table wrapper has no stroke.
+
+| Figma row layer | Contents |
+| --- | --- |
+| `screen` | Screen name at **18 px** on the left and a blue **In Progress** chip at **16 px** on the right, with **Space between** |
+| `section` | Centered **16 px** section name from the source screen, such as **Categories**, **Banner**, or **Services** |
+| `row` | One English–Arabic pair at **16 px**, with wrapping in both cells |
+
+The first section follows the screen heading directly. The table omits the “English / العربية” language-name row. Text, white surfaces, light-grey borders and separators, and the blue chip use the file’s design-system variables.
 
 ## English casing
 
@@ -49,20 +61,20 @@ English UI copy omits a final period. Arabic keeps its original punctuation. [Fu
 
 ## Example handoff
 
-For a verification screen with «رجوع» in the app header and «الرئيسية» in the footer, the table contains only the copy inside the form.
+In this Home screen, the **Banner** section contains a title, description, and button. They stay together. Each English string follows the casing for its own role.
 
-### Mobile Verification
+### Home · In Progress
 
-| English | العربية |
+| **Categories** | |
 | :--- | ---: |
-| **Title** | |
-| Enter the Verification Code | أدخل رمز التحقق |
-| **Field labels** | |
-| Verification Code | رمز التحقق |
-| **Helper text** | |
-| We sent a code to your mobile number | أرسلنا رمزًا إلى رقم جوالك. |
-| Didn’t receive the verification code? Request a new code in 00:59 | لم يصلك رمز التحقق؟ اطلب رمز جديد بعد: 00:59 |
-| **Buttons** | |
-| Resend Code | إعادة إرسال الرمز |
+| Plumbing | سباكة |
+| Electrical | كهرباء |
+| View All | عرض الكل |
+| **Banner** | |
+| Need Help? | تحتاج إلى مساعدة؟ |
+| Choose a service for your home | اختر خدمة لمنزلك. |
+| Book a Visit | احجز زيارة |
+| **Services** | |
+| Home Maintenance | صيانة منزلية |
 
-The extraction rules, translation conventions, and Figma instructions are in [SKILL.md](skills/ux-writing-ar-en/SKILL.md).
+Read the full [SKILL.md](skills/ux-writing-ar-en/SKILL.md).

@@ -1,6 +1,6 @@
 ---
 name: ux-writing-ar-en
-description: Extract Arabic UX copy from a screen, screenshot, or an entire Figma page, including pages with 50+ screens. Skip copy already translated on the same Figma page and build editable English–Arabic handoff tables in Figma with the file’s color variables. Use for bilingual UI copy audits, handoffs, or filling a supplied table component.
+description: Extract Arabic UX copy from a screen, screenshot, or an entire Figma page, including pages with 50+ screens. Skip copy already translated on the same Figma page and build editable 400 px English–Arabic handoff tables grouped by source section, using the file’s color variables. Use for bilingual UI copy audits, handoffs, or filling a supplied table component.
 ---
 
 # Arabic to English UX writing
@@ -10,7 +10,7 @@ For a Figma screen, selection, or page, deliver editable bilingual tables on the
 ## Identify the source screens and earlier translations
 
 1. Work within the source Figma page. For a single screen or selection, also inspect the page for earlier screens and their handoff tables. Write only for the requested screens. For a whole page, snapshot the IDs of **all** source screens and states, including those in nested sections and outside the viewport, before creating any output. Follow the user’s flow or numbered screen order when available. Otherwise use canvas reading order, top to bottom and right to left within a row, with a stable frame ID as a tie-breaker.
-2. Inventory existing translation tables separately. Recognize a generated table by its output marker or source-frame link. Recognize older handoffs by their screen heading, paired English–Arabic columns, section rows, and placement. Use these cues together. Exclude handoff tables, their wrapper sections, reusable copy-table templates, and all their descendants from source extraction. A product table **inside a source screen**, such as payment history, still contributes its headings and body copy. Skip component libraries and reference boards unless the user designates them as source screens.
+2. Inventory existing translation tables separately. Recognize a generated table by its output marker or source-frame link. Recognize older handoffs by their screen heading, paired English–Arabic cells, section rows, and placement. Use these cues together even when column labels are absent. Read only completed bilingual data rows into the lookup. Treat screen names, section headings, review chips, and any legacy language-name row as handoff metadata. Exclude handoff tables, their wrapper sections, reusable copy-table templates, and all their descendants from source extraction. A product table **inside a source screen**, such as payment history, still contributes its headings and body copy. Skip component libraries and reference boards unless the user designates them as source screens.
 3. Read completed Arabic–English pairs from the identified handoffs for lookup. Associate a table with its source frame ID, or with an unambiguous screen name and location in older files. For a single screen, use its own existing rows and rows documented for earlier screens on this page. For a whole-page pass, seed the lookup with completed rows already present on the page and give each new string to its first eligible screen in flow order. Ignore sample rows, incomplete pairs, and copy on other pages. Seeing Arabic on an earlier screen without a documented English translation does not count as a match.
 4. For a page of 50 or more screens, process the complete snapshot in manageable batches within the same request. Carry the translation lookup and the list of covered frame IDs across every batch. Recheck the destination before appending after an interruption, retain verified work, and continue from the first unfinished screen. Count a duplicate-only screen as covered.
 
@@ -20,7 +20,7 @@ For a Figma screen, selection, or page, deliver editable bilingual tables on the
 2. Use the supplied screen or frame name, or derive a short English heading from the body. Use “Screen 1”, “Screen 2”, and so on if the purpose is unclear. If the body has no translatable copy, record that screen as checked and continue.
 3. Assemble each complete label, sentence, or paragraph in Arabic reading order **before** filtering numbers or creating rows. Keep every number that belongs to the message in that same row, including a countdown introduced by «بعد:» or a quantity such as «٧ أيام». Join inline fragments even when the number is bold, updates live, wraps to another line, or occupies its own Figma text layer.
 4. After grouping, skip a numeric value that stands on its own, such as a page number or the year in a separate model-year field. Keep the independent field label. Transcribe each complete Arabic message exactly, including its spelling, punctuation, diacritics, numerals, and Latin text. Treat each independent message or control as a candidate for one row.
-5. Group elements by function. Use only headings supported by the body, such as **Title**, **Descriptions**, **Buttons**, **Field labels**, **Placeholders**, **Helper text**, **Errors**, **Success messages**, **Navigation**, **Statuses**, or **Terms**. Order groups by first appearance. Within a group, follow the Arabic reading order, top to bottom and right to left within a row.
+5. Group by the **section of the source screen**. Read the content containers or visible layout. Use a meaningful source section name, or give an unnamed region a short descriptive name such as **Categories**, **Banner**, **Services**, or **Verification form**. Use **Header** for an eligible in-body introductory section only. Keep a banner’s title, description, and button together under **Banner**. Use element roles to choose English casing, never to create groups such as **Titles** or **Buttons**. Show a section heading only when its table section contains a pair. A visible Arabic section title also gets a bilingual row when it qualifies as new copy. Preserve screen order and Arabic reading order within each section.
 6. If text is cropped or illegible, keep the readable fragment and mark the gap with `⟦غير مقروء⟧` in Arabic and `⟦unreadable⟧` in English. If an entire body is missing or unreadable, identify that screen for clarification and continue through the other screens.
 
 ## Decide which rows to write
@@ -60,37 +60,55 @@ For a new role outside this table, follow approved casing when available. Use se
 
 ## Build the handoff in Figma
 
-1. Choose the user’s destination if supplied. Otherwise place a single table in clear space beside its screen. For a page, place the tables together in a dedicated **UX Copy — EN / AR** section in unused space on the same page, in source order. Reuse an existing output section and the table associated with each source frame. Keep source screens and main components intact.
-2. With no template, create a native editable Auto Layout frame for each screen with new rows. Name it **UX Copy — <screen name>**. Put the screen name at the top and center each bold role heading across both columns. For each pair, create one horizontal row with two equal-width flexible cells. Put English in a left-aligned LTR text layer on the left and Arabic in a right-aligned RTL text layer on the right. Set a readable table width, let both texts wrap, and size rows to the taller cell. Use the file’s text styles and spacing. Give the table a thin outer border and 1 px row and column dividers. Include a review status only when explicitly supplied for that screen.
-3. If a table is supplied, inspect and reuse its layout. Detach a designated output instance in place. For a main component, create an instance of the supplied variant at the destination and detach that instance. For a reusable or nested template, make a working copy outside its parent before detaching it. Reuse an already detached frame. Work on the editable frame returned by `detachInstance()` when using the Plugin API. Duplicate the working template’s rows as needed, remove unused samples, and preserve its layout and typography. If the component arrives after extraction, use the prepared rows.
-4. Resolve the actual **color variables available in this file** once per page. Use the file’s semantic names, collections, active mode, and bindings on comparable elements to identify the roles below. The names shown here describe roles and can differ from the names in the file.
+1. Use the requested destination. Otherwise place a single table in clear space beside its screen. For a page, arrange the tables in source order in a dedicated **UX Copy — EN / AR** section in unused space on that page. Reuse the section and any table associated with the target frame.
+2. With no template, build an editable native Auto Layout table. If the user supplies a standalone output instance, detach it in place. For a main component, create an instance of the supplied variant and detach it. For a reusable or nested template, detach a working copy outside its parent. Continue on the frame returned by `detachInstance()` when using the Plugin API. Apply the layout below to the working frame, including supplied templates. Preserve compatible font families, weights, spacing, inline links, and approved translations.
+3. When explicitly asked to restyle an existing handoff, update that table in place even if all copy is already documented. Move its existing pairs into their source sections and remove obsolete template rows, including **Language columns**. During ordinary extraction, treat earlier screens’ tables as lookup sources. Write only to the requested destination.
 
-   | Part of the table | File color variable to bind |
-   | --- | --- |
-   | All text, including the screen name, section headings, and both language cells | Solid text |
-   | Table background and any opaque header, row, or cell surface | White background |
-   | Outer border, row dividers, and center divider | Light-grey line or separator. If the file defines separate variables, bind the border to line and the dividers to separator |
+### Table layout and layer names
 
-   Apply the variables as bindings to fills or strokes, including on a supplied table. A matching hex value alone does not establish a binding. If a role is missing or ambiguous, finish preparing the copy, identify the unresolved role, and ask for its variable. Keep the affected styling pending until it can be bound.
-5. Load the required fonts before editing text through the Plugin API. Write each pair into native text layers and preserve inline link styling. Mark the output section and tables so a later run can recognize them. Store the source page and frame IDs on each table in persistent node metadata when available. Otherwise use a consistent output name and retain an explicit link to the source frame. Keep markers on the handoff.
-6. Re-read the written pairs and their variable bindings. Verify left/right placement, complete Arabic text, English casing and punctuation, inline numbers in the same pair, wrapping without clipping, and absence of sample rows. For each covered screen, each candidate must resolve to a verified existing pair or a newly written pair. Reconcile the number of checked screens with the initial inventory and report any remaining screens or rows by name.
+Make the table wrapper a vertical Auto Layout frame with a **fixed width of 400 px**, **Hug contents** height, a white background, and **no stroke**. Name the wrapper **UX Copy — <screen name>** so the table is identifiable on the page.
 
-Return a link to the Figma section or table, or its page and frame name if no link is available. Summarize screens checked, new rows written, and repeated occurrences skipped. If all copy was already documented, link to the existing handoff. If the input is only a screenshot and the destination is unknown, prepare the pairs and ask for the editable Figma page. If the editor cannot write, preserve the prepared work and identify exactly what is pending. A canvas handoff is complete only after the rows and styling have been verified there.
+Use the following exact lowercase names for its direct child frames. Set **every** `screen`, `section`, and `row` to **Fill container** width and **Hug contents** height. When using the Plugin API, append each Auto Layout child to its parent before setting `layoutSizingHorizontal = 'FILL'` and `layoutSizingVertical = 'HUG'`.
+
+| Layer name | What to put in it |
+| --- | --- |
+| `screen` | One horizontal heading row. Put the visible screen name, such as **Home**, on the left. Name its text layer `screen` and set it to **18 px**. On the right place a blue pill labeled exactly **In Progress** at **16 px**. Use a horizontal **Space between** layout (`primaryAxisAlignItems = 'SPACE_BETWEEN'`) and vertically center both items. Let the chip hug its label and let a long screen name wrap within the available width. |
+| `section` | One full-width, centered, bold **16 px** heading per source section with copy. Name the heading text layer `section` and show the actual section name, such as **Categories**, **Banner**, or **Services**. |
+| `row` | One horizontal row per documented translation pair. Add rows only for new pairs. Use two equal flexible cells with English on the left, LTR and left-aligned, and exact Arabic on the right, RTL and right-aligned. Set both texts to **16 px** and let them wrap so the taller cell determines the row height. |
+
+Use **16 px for every text layer except the 18 px screen name**, including the chip label. Put the first content section directly after the `screen` row. Omit the entire language-name row, including any frame named `Language columns` or labeled “English / العربية”. The blue chip belongs to the handoff and contributes no translation row.
+
+Keep **1 px borders on the row frames** and a single light-grey vertical separator between the cells of each bilingual `row`. Draw each shared edge once. The screen and section headings span the full width with no center divider. Leave the table wrapper’s stroke empty.
+
+### Color bindings and verification
+
+Resolve the design system’s actual color variables once per page. Use semantic names, active mode, and bindings on matching elements in the file. Bind each fill or stroke, including those inherited from a template.
+
+| Element | File variable to bind |
+| --- | --- |
+| Screen name, section headings, English and Arabic text | Solid text |
+| Table background and opaque row or cell surfaces | White background |
+| Row borders and cell separators | Light-grey line for borders and light-grey separator for dividers, or their shared variable |
+| **In Progress** chip | The file’s blue status, informational, or brand-blue chip background. Bind the label to the corresponding foreground variable used by that chip style |
+
+If the file has a blue status chip, use its bindings in the active mode. Resolve missing or ambiguous variables with the user and mark that styling as pending. A matching literal color does not establish a binding.
+
+Load the required fonts before setting text. Mark the output section and tables so a later run can recognize them. Store the source page and frame IDs on each table in persistent node metadata where available. Otherwise retain an explicit source-frame link on the named output.
+
+Re-read the working table. Check its width, text sizes, lowercase layer names, Fill/Hug settings, row-only borders, and chip text, position, and blue variable binding. Verify that the first `section` follows `screen` directly, that groups follow the source sections, and that long Arabic and English text wraps without clipping. Trace each candidate to an existing or newly written pair and check its casing, punctuation, and inline numbers. Reconcile the screens checked with the initial inventory.
+
+Return the Figma section or table link, or its page and frame name if a link is unavailable. Report screens checked, new rows written, repeated occurrences skipped, and any unresolved work. For a screenshot without a destination, prepare the pairs and ask for the editable Figma page. Confirm a canvas handoff only after verifying it there.
 
 ## Text output when requested
 
-When the user explicitly asks for a chat table, preview, or export, apply the same extraction and duplicate-skipping rules to the available sources. In Markdown, put the screen name above a two-column table and each section name in bold in the first cell of its own row. For an HTML export, use equal columns, centered section headings, and thin dividers. Set the table to `dir="ltr"` and each Arabic cell to `lang="ar" dir="rtl"`.
+For an explicit chat preview or export, use the same source sections and duplicate-skipping rules. In Markdown, put the screen name and status above the table. Use the first real section name as the Markdown table header. Put subsequent section names in bold in the first cell of their own row. Omit language labels. In an HTML export, use two equal columns, centered spanning section headings, row borders, and a borderless table wrapper. Set the table to `dir="ltr"` and each Arabic cell to `lang="ar" dir="rtl"`.
 
-### Verify Mobile Number
+### Verify Mobile Number · In Progress
 
-| English | العربية |
+| **Verification form** | |
 | :--- | ---: |
-| **Title** | |
 | Enter the Verification Code | أدخل رمز التحقق |
-| **Field labels** | |
 | Verification Code | رمز التحقق |
-| **Helper text** | |
 | We sent a code to your mobile number | أرسلنا رمزًا إلى رقم جوالك. |
 | Didn’t receive the verification code? Request a new code in 00:59 | لم يصلك رمز التحقق؟ اطلب رمز جديد بعد: 00:59 |
-| **Buttons** | |
 | Resend Code | إعادة إرسال الرمز |
