@@ -1,6 +1,6 @@
 # UX-Writing-Skill-AR-EN
 
-Turn an Arabic product screen into a bilingual copy table. The agent keeps the original Arabic on the right, writes natural English on the left, and groups the rows by their role in the interface. It works from a screenshot or a design frame. Standalone numbers get no translation row. Numbers inside copy keep their original digits and formatting, as in «خلال ٧ أيام» → “Within ٧ days”.
+Turn an Arabic product screen into a bilingual copy table. The agent keeps the original Arabic on the right, writes natural English on the left, and groups the rows by their role in the interface. It works from a screenshot or a design frame. A number inside a sentence or paragraph stays in that same row, with its original digits and formatting, even when it occupies a separate Figma text layer. Standalone numbers get no translation row.
 
 ## Install
 
@@ -57,6 +57,7 @@ For a verification screen with «رجوع» in the app header and «الرئيس
 | Verification Code | رمز التحقق |
 | **Helper text** | |
 | We sent a code to your mobile number | أرسلنا رمزًا إلى رقم جوالك. |
+| Didn’t receive the verification code? Request a new code in 00:59 | لم يصلك رمز التحقق؟ اطلب رمز جديد بعد: 00:59 |
 | **Buttons** | |
 | Resend Code | إعادة إرسال الرمز |
 
