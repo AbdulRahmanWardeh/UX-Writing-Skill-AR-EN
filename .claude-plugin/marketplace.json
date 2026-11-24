@@ -7,7 +7,7 @@
     {
       "name": "ux-writing-ar-en",
       "source": "./",
-      "description": "Turn Arabic screens into English–Arabic copy tables, including editable Figma handoffs."
+      "description": "Document Arabic UX copy in editable bilingual Figma tables and skip repeat translations across a page."
     }
   ]
 }

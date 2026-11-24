@@ -1,5 +1,5 @@
 {
   "name": "ux-writing-ar-en",
-  "version": "0.1.4",
-  "description": "Extract Arabic body copy, translate it into English, and fill a bilingual UX writing table."
+  "version": "0.2.0",
+  "description": "Build editable English–Arabic copy tables in Figma for a screen or a whole page and skip labels already documented on that page."
 }

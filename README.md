@@ -1,6 +1,6 @@
 # UX-Writing-Skill-AR-EN
 
-Turn an Arabic product screen into a bilingual copy table. The agent keeps the original Arabic on the right, writes natural English on the left, and groups the rows by their role in the interface. It works from a screenshot or a design frame. A number inside a sentence or paragraph stays in that same row, with its original digits and formatting, even when it occupies a separate Figma text layer. Standalone numbers get no translation row.
+Document Arabic interface copy from one screen, a selection, or an entire Figma page. The agent creates editable bilingual tables on the canvas, with English on the left and the exact Arabic on the right. Each screen contributes only copy that still needs documenting.
 
 ## Install
 
@@ -27,15 +27,19 @@ To use the marketplace installation, run these commands inside Claude Code.
 
 ## Use the skill
 
-Attach a screen and ask the agent to extract its copy.
+With an editable Figma page, try this prompt.
 
-> Extract the Arabic body copy from this screen and give me the English and Arabic in a table. Skip the screen header and footer.
+> Translate every screen on this page and create the bilingual tables in Figma. Skip anything already documented on this page.
 
-Supply a Figma table with the screen or in a later message.
+For a single screen, try this prompt.
 
-> Fill this table with the copy you extracted. Detach the table instance yourself and keep its typography, spacing, and Auto Layout.
+> Document the new copy on this screen. Check the earlier screens’ translation tables first.
 
-Give the agent an editable Figma table for the second step. When you supply a main component, the agent creates and detaches a working instance. A screenshot alone is enough for the copy table in chat.
+If screen 1 already documents the button **استمرار → Continue**, the same button on screen 2 is **skipped entirely**. Screen 2 gets a table only if it has other, new copy. Running the skill again on an unchanged page adds zero rows.
+
+The agent can process a page with 50+ screens in one request. It reads existing handoffs to check for duplicates and excludes those tables from source extraction. Product tables inside screens, such as payment history, still contribute their labels and text. Screen headers, footers, and standalone numbers are skipped. An inline number such as `00:59` stays in its sentence with its original digits, even when the timer has its own Figma layer.
+
+The agent designs the table using the file’s color variables for solid text, a white background, and light-grey borders and separators. A template is optional. If you provide a table instance, the agent detaches and fills it. If you start with a screenshot, provide an editable Figma destination for the canvas handoff or ask for a Markdown preview.
 
 ## English casing
 
