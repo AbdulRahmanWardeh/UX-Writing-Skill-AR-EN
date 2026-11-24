@@ -1,6 +1,6 @@
 # UX-Writing-Skill-AR-EN
 
-Turn an Arabic product screen into a bilingual copy table. The agent keeps the original Arabic on the right, writes natural English on the left, and groups the rows by their role in the interface. It works from a screenshot or a design frame.
+Turn an Arabic product screen into a bilingual copy table. The agent keeps the original Arabic on the right, writes natural English on the left, and groups the rows by their role in the interface. It works from a screenshot or a design frame. Standalone numbers get no translation row. Numbers inside copy keep their original digits and formatting, as in «خلال ٧ أيام» → “Within ٧ days”.
 
 ## Install
 
