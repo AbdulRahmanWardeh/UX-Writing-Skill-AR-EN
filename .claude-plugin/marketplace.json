@@ -1,0 +1,13 @@
+{
+  "name": "ux-writing-skills",
+  "owner": {
+    "name": "AbdulRahmanWardeh"
+  },
+  "plugins": [
+    {
+      "name": "ux-writing-ar-en",
+      "source": "./",
+      "description": "Turn Arabic screens into English–Arabic copy tables, including editable Figma handoffs."
+    }
+  ]
+}
