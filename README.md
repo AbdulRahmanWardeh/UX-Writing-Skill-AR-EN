@@ -37,11 +37,15 @@ Supply a Figma table with the screen or in a later message.
 
 Give the agent an editable Figma table for the second step. When you supply a main component, the agent creates and detaches a working instance. A screenshot alone is enough for the copy table in chat.
 
+## English casing
+
+Follow each element’s role on the source screen. A filter chip reads **Review Needed** and a status badge reads **Review needed**. A standalone success message reads **Changes Saved** and a toast reads **Changes saved**. In a source table, the heading **Payment Method** uses title case and the value **Bank transfer** uses sentence case. Each translated string keeps its casing in the handoff table.
+
+English UI copy omits a final period. Arabic keeps its original punctuation. [Full casing rules](skills/ux-writing-ar-en/SKILL.md#apply-english-casing-and-punctuation)
+
 ## Example handoff
 
 For a verification screen with «رجوع» in the app header and «الرئيسية» in the footer, the table contains only the copy inside the form.
-
-English titles, buttons, and field labels use title case. Supporting text and messages use sentence case. The English copy omits a final period, and the Arabic keeps its original punctuation.
 
 ### Mobile Verification
 

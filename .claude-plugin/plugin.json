@@ -1,5 +1,5 @@
 {
   "name": "ux-writing-ar-en",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Extract Arabic body copy, translate it into English, and fill a bilingual UX writing table."
 }

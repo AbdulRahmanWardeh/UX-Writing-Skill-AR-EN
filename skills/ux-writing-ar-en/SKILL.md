@@ -24,16 +24,23 @@ Create one bilingual copy table for each supplied screen or state. Place English
 
 ### Apply English casing and punctuation
 
-Classify each string by its function. A dialog can contain a title, a description, and two buttons. Style each separately, including a button inside a toast or snackbar.
+Choose the case from the element’s role in the source screen. Carry that casing into the bilingual handoff table. Style independently displayed controls separately, including a button inside a toast or a table cell.
 
-| English UI role | Rule | Examples |
+- For **Title Case**, capitalize the first word and each main word. Lowercase articles, short conjunctions, and prepositions such as “a”, “an”, “the”, “and”, “or”, “at”, “by”, “for”, “in”, “of”, “on”, and “to” within a phrase. Capitalize verb particles, as in “Log In”. Use “Go to the Next Step” for a button.
+- For **sentence case**, capitalize the first word of each sentence and preserve established names and acronyms. Use “Check the OTP and try again” for an error. An inline link takes the casing of its words at their position in the surrounding sentence.
+
+| Source UI element | Use Title Case for | Use sentence case for |
 | --- | --- | --- |
-| Titles, buttons, and field labels | Use title case. Capitalize the first word and each main word. Lowercase articles, short conjunctions, and prepositions such as “a”, “an”, “the”, “and”, “or”, “at”, “by”, “for”, “in”, “of”, “on”, and “to” when they occur within the phrase. Capitalize verb particles, as in “Log In”. | “Go to the Next Step”, “Create an Account”, “Mobile Number” |
-| Subtitles, descriptions, body paragraphs, field hints, toast and snackbar messages, errors, and user helper messages | Use sentence case. Capitalize the first word of each sentence and retain established names and acronyms within it. | “Enter your mobile number”, “Your changes were saved”, “Check the OTP and try again” |
+| Headings and supporting text | Titles | Subtitles, descriptions, body paragraphs, field hints, and other helper messages |
+| Navigation and links | In-body navigation labels, tabs, breadcrumbs, step names, and standalone text links such as “View Your Request” | Links embedded in a sentence, as in “You can **view your request** here” |
+| Forms and actions | Buttons and field labels, including labels for read-only fields, such as “Delivery Method” | Field and search placeholders such as “Search by city”, and ordinary dropdown, radio, checkbox, and switch options such as “Home delivery” |
+| Filters, sorting, and status | Filter chips such as “Review Needed” and sort options such as “Recently Added”, including sort options in a dropdown | Status badges and tags such as “Review needed” |
+| Tables in the source screen | Table headings, including column and row headings such as “Purchase Method” | Text and values in table body cells, such as “Bank transfer” |
+| Feedback | Loading, success, and warning messages outside a toast or snackbar, such as “Checking Availability” or “Changes Saved” | Toast and snackbar messages, including “Changes saved”, and error messages wherever they appear |
 
 Omit the final full stop (`.`) from every English UI string, in chat and in Figma. Keep question marks, meaningful exclamation marks, sentence separators within a paragraph, and dots inside numbers, URLs, or filenames. Transcribe the Arabic exactly, including any final period.
 
-For a role the user has yet to classify, follow any approved casing for that element. Use sentence case provisionally for new wording until the user chooses the role’s style.
+For a new role outside this table, follow approved casing when available. Use sentence case for new wording until the user specifies a convention for that role.
 
 ## Fill a supplied table component
 
