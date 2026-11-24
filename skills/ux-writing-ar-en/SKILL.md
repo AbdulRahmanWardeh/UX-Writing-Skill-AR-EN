@@ -17,10 +17,23 @@ Create one bilingual copy table for each supplied screen or state. Place English
 
 ## Write the English
 
-- Translate what each element does. Use a concise verb for a button, a noun phrase for a field label, and a clear statement for a status. For example, translate the action «تأكيد الدفع» as “Confirm payment” and the status «تم تأكيد الدفع» as “Payment confirmed”.
-- Use natural, sentence-case English. Reuse explicitly approved English copy for the same element, and follow supplied product terminology. For Shop by Motory screens, use “Shop by Motory” for «شوب من موتري».
+- Translate what each element does. Use a concise verb for a button, a noun phrase for a field label, and a clear statement for a message. For example, translate the button «تأكيد الدفع» as “Confirm Payment” and the toast «تم تأكيد الدفع» as “Payment confirmed”.
+- Reuse approved English wording and product terminology. Apply the casing for the element’s role. Preserve the official spelling of brands, proper names, and acronyms in either case, including “Shop by Motory”, “Apple Pay”, and “OTP”.
 - Carry over amounts, currencies, deadlines, conditions, negation, and who takes the action. Keep placeholders such as `{amount}`, `{{name}}`, and `%s` intact.
 - Keep a consent statement in one row with each linked phrase in its sentence. Underline the corresponding words where supported. Add a hyperlink only when its destination is supplied.
+
+### Apply English casing and punctuation
+
+Classify each string by its function. A dialog can contain a title, a description, and two buttons. Style each separately, including a button inside a toast or snackbar.
+
+| English UI role | Rule | Examples |
+| --- | --- | --- |
+| Titles, buttons, and field labels | Use title case. Capitalize the first word and each main word. Lowercase articles, short conjunctions, and prepositions such as “a”, “an”, “the”, “and”, “or”, “at”, “by”, “for”, “in”, “of”, “on”, and “to” when they occur within the phrase. Capitalize verb particles, as in “Log In”. | “Go to the Next Step”, “Create an Account”, “Mobile Number” |
+| Subtitles, descriptions, body paragraphs, field hints, toast and snackbar messages, errors, and user helper messages | Use sentence case. Capitalize the first word of each sentence and retain established names and acronyms within it. | “Enter your mobile number”, “Your changes were saved”, “Check the OTP and try again” |
+
+Omit the final full stop (`.`) from every English UI string, in chat and in Figma. Keep question marks, meaningful exclamation marks, sentence separators within a paragraph, and dots inside numbers, URLs, or filenames. Transcribe the Arabic exactly, including any final period.
+
+For a role the user has yet to classify, follow any approved casing for that element. Use sentence case provisionally for new wording until the user chooses the role’s style.
 
 ## Fill a supplied table component
 
@@ -39,13 +52,17 @@ If the target is only a screenshot, the editing connection is unavailable, or ed
 - In HTML or a rich document, use one table per screen with two equal-width columns and thin dividers. Put the screen name at the upper left, the optional review status at the upper right, and center each bold section heading across both columns. In HTML, set the table to `dir="ltr"` and each Arabic cell to `lang="ar" dir="rtl"`. Align English left and Arabic right.
 - In Markdown chat, use the screen name as a heading, then one two-column table. Put each section name in bold in the first cell of its own row. Use the following excerpt as a formatting example.
 
-### Verify mobile number
+### Verify Mobile Number
 
 | English | العربية |
 | :--- | ---: |
 | **Title** | |
-| Enter the verification code | أدخل رمز التحقق |
+| Enter the Verification Code | أدخل رمز التحقق |
+| **Field labels** | |
+| Verification Code | رمز التحقق |
+| **Helper text** | |
+| We sent a code to your mobile number | أرسلنا رمزًا إلى رقم جوالك. |
 | **Buttons** | |
-| Resend code | إعادة إرسال الرمز |
+| Resend Code | إعادة إرسال الرمز |
 
-Compare each row with the source body. Check small print, inline links, repeated labels, and Arabic–English pairing. After a verified canvas edit, return the table link or its page and frame name. For a chat handoff, return the screen headings and tables, with a brief access note only if a requested canvas edit is pending.
+Compare each row with the source body. Check the English case against the element’s role, confirm each English string omits a final full stop, and match the Arabic punctuation to the source. Check small print, inline links, repeated labels, and Arabic–English pairing. After a verified canvas edit, return the table link or its page and frame name. For a chat handoff, return the screen headings and tables, with a brief access note only if a requested canvas edit is pending.

@@ -41,13 +41,19 @@ Give the agent an editable Figma table for the second step. When you supply a ma
 
 For a verification screen with «رجوع» in the app header and «الرئيسية» in the footer, the table contains only the copy inside the form.
 
-### Mobile verification
+English titles, buttons, and field labels use title case. Supporting text and messages use sentence case. The English copy omits a final period, and the Arabic keeps its original punctuation.
+
+### Mobile Verification
 
 | English | العربية |
 | :--- | ---: |
 | **Title** | |
-| Enter the verification code | أدخل رمز التحقق |
+| Enter the Verification Code | أدخل رمز التحقق |
+| **Field labels** | |
+| Verification Code | رمز التحقق |
+| **Helper text** | |
+| We sent a code to your mobile number | أرسلنا رمزًا إلى رقم جوالك. |
 | **Buttons** | |
-| Resend code | إعادة إرسال الرمز |
+| Resend Code | إعادة إرسال الرمز |
 
 The extraction rules, translation conventions, and Figma instructions are in [SKILL.md](skills/ux-writing-ar-en/SKILL.md).
