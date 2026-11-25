@@ -43,15 +43,17 @@ A template is optional. The agent builds the table or detaches a supplied instan
 
 ## Figma table layout
 
-Each table is **400 px** wide with a white background. Each row fills the table width and hugs its content height. The rows carry the light-grey borders and dividers. The table wrapper has no stroke.
+The table takes the selected source name exactly. For example, the handoff for `Profile - Desktop` is named `Profile - Desktop`. On a multi-screen page, each table takes its own source frame’s name. The white table wrapper is **400 px** wide and has no stroke. Each row fills the available width and hugs its content height.
 
 | Figma row layer | Contents |
 | --- | --- |
-| `screen` | Screen name at **18 px** on the left and a blue **In Progress** chip at **16 px** on the right, with **Space between** |
-| `section` | Centered **16 px** section name from the source screen, such as **Categories**, **Banner**, or **Services** |
-| `row` | One English–Arabic pair at **16 px**, with wrapping in both cells |
+| `Screen` | Screen name in **Almarai 18 px** on the left and a blue **In Progress** chip on the right, with **Space between** |
+| `Section` | Centered section heading in **Almarai Bold 18 px**, such as **Breadcrumbs** or **Services** |
+| `Row` | An English–Arabic pair in **Almarai 16 px**, with equal-width cells and wrapping text |
 
-The first section follows the screen heading directly. The table omits the “English / العربية” language-name row. Text, white surfaces, light-grey borders and separators, and the blue chip use the file’s design-system variables.
+Every cell has **16 px** left/right and **12 px** top/bottom padding. Each row and each cell has its own **1 px Outside** stroke on all four edges. Bind these strokes to the file’s light-grey line and separator variables.
+
+The chip label uses **Poppins SemiBold (600), 18 px**, with **20 px** left/right and **6 px** top/bottom padding. The chip uses the design system’s blue background and matching foreground. All other text uses **Almarai**. The first content section follows the screen heading directly, with no language-name row.
 
 ## English casing
 
