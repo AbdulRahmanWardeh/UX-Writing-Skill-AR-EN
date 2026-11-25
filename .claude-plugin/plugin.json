@@ -1,5 +1,5 @@
 {
   "name": "ux-writing-ar-en",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Build editable English–Arabic copy tables in Figma for a screen or a whole page and skip labels already documented on that page."
 }

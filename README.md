@@ -47,13 +47,13 @@ The table takes the selected source name exactly. For example, the handoff for `
 
 | Figma row layer | Contents |
 | --- | --- |
-| `Screen` | Screen name in **Almarai 18 px** on the left and a blue **In Progress** chip on the right, with **Space between** |
+| `Screen` | Screen name in **Almarai Bold (700), 18 px** on the left and a blue **In Progress** chip on the right, with **Space between** |
 | `Section` | Centered section heading in **Almarai Bold 18 px**, such as **Breadcrumbs** or **Services** |
 | `Row` | An English–Arabic pair in **Almarai 16 px**, with equal-width cells and wrapping text |
 
 Every cell has **16 px** left/right and **12 px** top/bottom padding. Each row and each cell has its own **1 px Outside** stroke on all four edges. Bind these strokes to the file’s light-grey line and separator variables.
 
-The chip label uses **Poppins SemiBold (600), 18 px**, with **20 px** left/right and **6 px** top/bottom padding. The chip uses the design system’s blue background and matching foreground. All other text uses **Almarai**. The first content section follows the screen heading directly, with no language-name row.
+The chip label uses **Poppins SemiBold (600), 18 px**, with **20 px** left/right and **6 px** top/bottom padding. All four chip corners have a **24 px radius** for a fully rounded pill. The chip uses the design system’s blue background and matching foreground. All other text uses **Almarai**. The first content section follows the screen heading directly, with no language-name row.
 
 ## English casing
 
