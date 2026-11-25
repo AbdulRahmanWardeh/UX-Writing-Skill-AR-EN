@@ -39,7 +39,9 @@ If screen 1 already documents the button **استمرار → Continue**, the sa
 
 The agent can process a page with 50+ screens in one request. It reads existing handoffs to check for duplicates and excludes those tables from source extraction. Product tables inside screens, such as payment history, still contribute their labels and text. Screen headers, footers, and standalone numbers are skipped. An inline number such as `00:59` stays in its sentence with its original digits, even when the timer has its own Figma layer.
 
-When desktop and responsive versions of **Profile**, **Active & Filled**, and **Error** are selected, only the three desktop sources are translated. Each state with new copy gets its own table. A responsive screen selected on its own is eligible for translation.
+When you select multiple screens, the agent processes them **left to right on the canvas**, finishing each visual row before moving down. This order applies even if you select the rightmost screen first. In a row laid out as **Profile → Active & Filled → Error**, Profile gets the first chance to document a shared label.
+
+For matching desktop and responsive frames, only the desktop supplies copy and determines that state’s position in the sequence. Each state with new copy gets its own table. A responsive screen selected on its own is eligible for translation.
 
 Standalone names are skipped. The field label «الاسم الكامل» becomes **Full Name**. In «مرحبًا، سارة», the name stays exactly as written in the English copy, **Welcome, سارة**.
 
